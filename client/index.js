@@ -25,3 +25,21 @@ client.createTodo(
     else console.log(`Recieved from server ${JSON.stringify(response)}`);
   }
 );
+
+client.createTodo(
+  {
+    id: -1,
+    text: 'Do it!',
+  },
+  (err, response) => {
+    if (err) console.error(err);
+    else console.log(`Recieved from server ${JSON.stringify(response)}`);
+  }
+);
+
+setTimeout(() => {
+  client.readTodos({}, (err, response) => {
+    if (err) console.error(err);
+    else console.log(`Recieved from server ${JSON.stringify(response)}`);
+  });
+}, 5000);

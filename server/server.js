@@ -24,6 +24,8 @@ server.addService(todoPackage.Todo.service, {
   },
   readTodos(call, callback) {
     console.log(call);
+
+    callback(null, { todos });
   },
 });
 
