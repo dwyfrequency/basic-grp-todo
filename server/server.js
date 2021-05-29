@@ -12,9 +12,15 @@ const todoPackage = grpcObject.todoPackage;
 
 const server = new grpc.Server();
 
+const todos = [];
 server.addService(todoPackage.Todo.service, {
   createTodo(call, callback) {
-    console.log(call);
+    const todoLength = todos.push({
+      id: todos.length + 1,
+      text: call.request.text,
+    });
+
+    callback(null, todos[todoLength - 1]);
   },
   readTodos(call, callback) {
     console.log(call);
@@ -27,5 +33,6 @@ server.bindAsync(
   grpc.ServerCredentials.createInsecure(),
   () => {
     server.start();
+    console.log('SERVER STARTED');
   }
 );
